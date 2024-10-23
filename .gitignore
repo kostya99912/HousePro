@@ -1,0 +1,36 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.coverage
+*.egg-info/
+dist/
+build/
+media/
+staticfiles/
+
+# Environment variables
+.env
+
+# MySQL
+*.sql
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Python virtual environments
+venv/
+ENV/
+env/
+venv.bak/

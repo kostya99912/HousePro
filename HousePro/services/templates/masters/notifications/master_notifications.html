@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Notifications</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Master Notifications</h2>
+        <ul class="list-group">
+            {% for notification in notifications %}
+                <li class="list-group-item {% if notification.is_read %}text-muted{% endif %}">
+                    <strong>{{ notification.get_notification_type_display }}:</strong> 
+                    {{ notification.message }} - {{ notification.created_at|date:"d M Y H:i" }}
+                </li>
+            {% empty %}
+                <li class="list-group-item">You have no notifications at the moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Orders Assigned to You</h2>
+        <!-- Checking for orders -->
+        {% if orders %}
+            <div class="row">
+                {% for order in orders %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ order.task_name }}</h5>
+                                <p class="card-text">
+                                    <strong>Status:</strong> {{ order.status }} <br>
+                                    <strong>Price:</strong> ${{ order.price }} <br>
+                                    <strong>Date:</strong> {{ order.date|date:"d M Y" }} <br>
+                                    <strong>Description:</strong> {{ order.description }} <br>
+                                    <strong>Location:</strong> {{ order.location }} <br>
+                                </p>
+                            </div>
+                            <!-- Order status -->
+                            <div class="card-footer text-muted">
+                                {% if order.status == 'Pending' %}
+                                    <span class="badge badge-warning">Pending</span>
+                                {% elif order.status == 'Confirmed' %}
+                                    <span class="badge badge-info">Confirmed</span>
+                                {% elif order.status == 'Completed' %}
+                                    <span class="badge badge-success">Completed</span>
+                                {% elif order.status == 'Canceled' %}
+                                    <span class="badge badge-danger">Canceled</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No orders assigned to you at the moment.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

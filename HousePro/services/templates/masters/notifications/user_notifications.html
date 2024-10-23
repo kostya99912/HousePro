@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Notifications</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .notification-header {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .list-group-item {
+            background-color: #1e1e1e;
+            border: 1px solid #343a40;
+        }
+        .list-group-item:hover {
+            background-color: #2c2c2c;
+        }
+        .notification-type {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="notification-header">User Notifications</h2>
+        <ul class="list-group">
+            {% for notification in notifications %}
+                <li class="list-group-item {% if notification.is_read %}text-muted{% endif %}">
+                    <span class="notification-type">
+                        {% if notification.notification_type == 'order_created' %}
+                            Order Update:
+                        {% elif notification.notification_type == 'review_created' %}
+                            Review:
+                        {% elif notification.notification_type == 'payment' %}
+                            Payment:
+                        {% else %}
+                            Notification:
+                        {% endif %}
+                    </span> 
+                    {{ notification.message }} - {{ notification.created_at|date:"d M Y H:i" }}
+                </li>
+            {% empty %}
+                <li class="list-group-item">You have no notifications.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
